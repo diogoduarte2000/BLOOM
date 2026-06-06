@@ -1369,7 +1369,7 @@
         }
 
         .plots-section h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--serif);
             font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 400;
             margin-bottom: 1rem;
@@ -1435,7 +1435,7 @@
         }
 
         .efficiency-orig h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--serif);
             font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 400;
             margin-bottom: 1rem;
@@ -1505,7 +1505,7 @@
         }
 
         .contact-left h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--serif);
             font-size: 2.5rem;
             font-weight: 400;
             color: #fff;
@@ -1606,7 +1606,7 @@
 
         .footer-orig {
             background: var(--dark);
-            padding: 4rem 3rem 0;
+            padding: 4rem clamp(2rem, 6vw, 7rem) 0;
             overflow: hidden;
         }
 
@@ -1618,7 +1618,7 @@
         }
 
         .footer-brand h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--serif);
             font-size: 1.8rem;
             font-weight: 400;
             color: #fff;
@@ -1670,7 +1670,7 @@
         }
 
         .footer-bottom-orig {
-            border-top: 0.5px solid rgba(255, 255, 255, 0.1);
+            border-top: none;
             padding: 1.5rem 0 2rem;
             display: flex;
             justify-content: space-between;
@@ -1701,8 +1701,8 @@
         /* Bottom banner — flush to footer base, slightly wider than content */
         .bottom-banner-orig {
             position: relative;
-            margin: 0 -3rem;
-            width: calc(100% + 6rem);
+            margin: 0 clamp(-2rem, -6vw, -7rem);
+            width: calc(100% + clamp(4rem, 12vw, 14rem));
             height: 360px;
             overflow: hidden;
             display: flex;
@@ -1722,7 +1722,7 @@
         .bottom-banner-logo-orig {
             position: relative;
             z-index: 2;
-            font-family: 'Playfair Display', serif;
+            font-family: var(--serif);
             font-size: clamp(3rem, 9vw, 7rem);
             font-weight: 400;
             color: rgba(255, 255, 255, 0.85);
@@ -1790,12 +1790,12 @@
             }
 
             .footer-orig {
-                padding: 3rem 1.5rem 0;
+                padding: 3rem 2rem 0;
             }
 
             .bottom-banner-orig {
-                margin: 0 -1.5rem;
-                width: calc(100% + 3rem);
+                margin: 0 -2rem;
+                width: calc(100% + 4rem);
                 height: 280px;
             }
 
@@ -2077,14 +2077,15 @@
             Bloom Living is a<br>residential project shaped<br>by a <em>new way of living</em>
         </h2>
         <p class="intro-body">One that values intention over excess, quality over quantity, and spaces that adapt to
-            real life.</p>
+            real
+            life.</p>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════
      FULL PHOTO
 ═══════════════════════════════════════════════════════════════ -->
     <div class="full-photo">
-        <img src="assets/group 42.svg" alt="Full-width interior photo">
+        <div class="img-placeholder" style="height:520px">Full-width interior photo<br>interior-living.jpg</div>
     </div>
 
     <!-- ═══════════════════════════════════════════════════════════
