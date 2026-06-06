@@ -511,7 +511,7 @@
 
         /* ─── SECTION: DESIGNED WITH INTENTION ───────────────────── */
         .intention {
-            background: var(--white);
+            background: var(--cream);
             padding: 5rem var(--pad-x);
             text-align: center;
         }
@@ -549,7 +549,7 @@
         /* ─── GALLERY GRID ──────────────────────────────────────── */
         .photo-grid {
             display: grid;
-            grid-template-columns: 1fr 1.4fr 1fr;
+            grid-template-columns: 1fr 2.3fr 1.5fr;
             gap: 0.5rem;
             height: 780px;
         }
@@ -562,8 +562,8 @@
         }
 
         .gallery-col-side {
-            padding-top: 4.5rem;
-            padding-bottom: 4.5rem;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
         }
 
         /* Right column has less offset — images fill more height */
@@ -695,8 +695,8 @@
         }
 
         .ci-icon {
-            width: 16px;
-            height: 16px;
+            width: 20px;
+            height: 20px;
             color: var(--orange);
             flex-shrink: 0;
             margin-top: 2px;
@@ -711,8 +711,8 @@
 
         /* ─── SECTION: DISCOVER ───────────────────────────────────── */
         .discover-wrap {
-            padding: 4rem var(--pad-x) 5rem;
-            background: #ffffff;
+            padding: 4rem 0 5rem;
+            background: var(--cream);
         }
 
         .discover {
@@ -751,7 +751,7 @@
         .discover-ctas {
             display: flex;
             gap: .75rem;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
         }
 
         .discover-right {
@@ -803,6 +803,8 @@
 
         .filter-group {
             display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
             gap: .4rem;
             align-items: center;
         }
@@ -812,8 +814,9 @@
             font-weight: 600;
             letter-spacing: .08em;
             text-transform: uppercase;
-            color: var(--muted);
-            margin-right: .2rem;
+            color: var(--orange);
+            width: 100%;
+            margin-bottom: .1rem;
         }
 
         .filter-chip {
@@ -822,9 +825,10 @@
             font-size: .72rem;
             font-weight: 500;
             border: 1.5px solid var(--cream-2);
-            background: transparent;
+            background: var(--white);
+            color: var(--dark);
             cursor: pointer;
-            transition: background .15s, color .15s;
+            transition: background .15s, color .15s, border-color .15s;
         }
 
         .filter-chip.active {
@@ -834,15 +838,15 @@
         }
 
         .filter-chip.available {
-            background: var(--orange);
-            color: var(--white);
-            border-color: var(--orange);
+            background: var(--white);
+            color: var(--dark);
+            border-color: var(--cream-2);
         }
 
         .filter-chip.reserved {
-            background: transparent;
+            background: var(--white);
             color: var(--dark);
-            border: 1.5px solid var(--dark);
+            border: 1.5px solid var(--cream-2);
             border-radius: 99px;
         }
 
@@ -901,7 +905,7 @@
 
         /* ─── SECTION: WHAT BLOOM OFFERS ─────────────────────────── */
         .offers {
-            background: var(--white);
+            background: var(--cream-warm);
             padding: 5rem var(--pad-x);
             text-align: center;
         }
@@ -917,8 +921,8 @@
         .offer-item {}
 
         .offer-icon {
-            width: 32px;
-            height: 32px;
+            width: 24px;
+            height: 24px;
             color: var(--orange);
             margin-bottom: 1rem;
             object-fit: contain;
@@ -939,7 +943,7 @@
 
         /* ─── SECTION: PLOTS FOR SALE ─────────────────────────────── */
         .plots {
-            background: var(--cream);
+            background: var(--cream-warm);
             padding: 5rem var(--pad-x);
         }
 
@@ -1411,37 +1415,38 @@
 
         .aerial-badge {
             position: absolute;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(232, 238, 252, 0.96);
             padding: 5px 14px;
             border-radius: 20px;
             font-size: 0.78rem;
             font-weight: 500;
-            backdrop-filter: blur(4px);
+            color: #1c2a48;
+            backdrop-filter: blur(6px);
             cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.14);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+            white-space: nowrap;
         }
 
         .aerial-badge::after {
             content: '';
             position: absolute;
             bottom: -6px;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 22%;
             width: 0;
             height: 0;
             border-left: 6px solid transparent;
             border-right: 6px solid transparent;
-            border-top: 6px solid rgba(255, 255, 255, 0.95);
+            border-top: 6px solid rgba(232, 238, 252, 0.96);
         }
 
         .lote8 {
-            top: 30%;
+            top: 43%;
             left: 44%;
         }
 
         .lote7 {
-            top: 38%;
-            left: 56%;
+            top: 47%;
+            left: 53%;
         }
 
         .efficiency-orig {
@@ -1926,7 +1931,7 @@
             .photo-grid {
                 display: grid !important;
                 height: auto !important;
-                grid-template-columns: 1.3fr 1fr;
+                grid-template-columns: 1.4fr 1fr;
                 grid-template-rows: repeat(6, 110px);
                 gap: 0.4rem;
             }
@@ -1988,6 +1993,18 @@
                 height: 180px;
             }
 
+            .discover-ctas {
+                flex-wrap: nowrap;
+            }
+
+            .discover-ctas .btn {
+                flex: 1;
+                justify-content: center;
+                font-size: .65rem;
+                padding: .5rem .5rem;
+                white-space: nowrap;
+            }
+
             .homes {
                 padding: 3rem 1rem;
             }
@@ -2014,6 +2031,17 @@
 
             .plots-img {
                 height: 240px;
+            }
+
+            /* Lotes mobile: spread them apart so they don't overlap */
+            .lote8 {
+                top: 33%;
+                left: 26%;
+            }
+
+            .lote7 {
+                top: 43%;
+                left: 53%;
             }
 
             .efficiency {
@@ -2292,7 +2320,7 @@
                 <span class="ci-text">Green areas and outdoor paths</span>
             </div>
             <div class="ci-item">
-                <img class="ci-icon" src="icons/Vector-3.svg" alt="">
+                <img class="ci-icon" src="icons/Vector-7.svg" alt="">
                 <span class="ci-text">Local commerce and daily services</span>
             </div>
             <div class="ci-item">
@@ -2328,11 +2356,8 @@
                             </svg>
                             Download brochure
                         </button>
-                        <button class="btn btn-orange-outline" style="color:white;border-color:rgba(255,255,255,.5)">
-                            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <circle cx="8" cy="8" r="6" />
-                                <path d="M6 5.5l5 2.5-5 2.5V5.5z" fill="currentColor" stroke="none" />
-                            </svg>
+                        <button class="btn" style="background:white;color:var(--dark);border:none;">
+                            <img src="icons/Iconcam.svg" alt="" style="width:16px;height:16px;object-fit:contain;">
                             Virtual tour
                         </button>
                     </div>
