@@ -240,7 +240,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 1rem 0;
+            padding: 2.5rem 0 1rem;
         }
 
         .hero-eyebrow {
@@ -308,11 +308,7 @@
 
         .btn-hero-primary .arrow-icon,
         .arrow-icon {
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.15);
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
@@ -391,7 +387,8 @@
             color: var(--muted);
             line-height: 1.8;
             max-width: 420px;
-            
+            margin-left: auto;
+            margin-right: 0;
         }
 
         /* ─── SECTION: FULL PHOTO ─────────────────────────────────── */
@@ -628,14 +625,14 @@
             background: var(--cream);
             padding: 0;
             display: grid;
-            grid-template-columns: 360px 1fr;
+            grid-template-columns: 420px 1fr;
             gap: 0;
             overflow: hidden;
         }
 
         .connected-left {
             background: var(--cream);
-            padding: 7rem 2.5rem 7rem var(--pad-x);
+            padding: 7.7rem 2.5rem 7.7rem var(--pad-x);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -660,12 +657,12 @@
             font-size: .88rem;
             color: var(--muted);
             line-height: 1.75;
-            max-width: 260px;
+            max-width: 320px;
         }
 
         .map-placeholder {
             width: 100%;
-            height: 560px;
+            height: 616px;
             background: var(--cream);
             overflow: hidden;
             position: relative;
@@ -861,15 +858,21 @@
             letter-spacing: .08em;
             text-transform: uppercase;
             color: var(--muted);
-            padding: .6rem 0;
+            padding: .6rem 2rem .6rem 0;
             border-bottom: 1.5px solid var(--cream-2);
         }
 
         .homes-table td {
             font-size: .83rem;
-            padding: 1rem 0;
+            padding: 1rem 2rem 1rem 0;
             border-bottom: 1px solid var(--cream-2);
             vertical-align: middle;
+        }
+
+        .homes-table th:last-child,
+        .homes-table td:last-child {
+            padding-right: 0;
+            text-align: right;
         }
 
         .status-badge {
@@ -881,8 +884,8 @@
         }
 
         .status-badge.available {
-            background: rgba(232, 103, 58, .12);
-            color: var(--orange-deep);
+            border: 1.5px solid var(--cream-2);
+            color: var(--muted);
         }
 
         .status-badge.reserved {
@@ -1289,7 +1292,7 @@
             }
 
             .connected {
-                grid-template-columns: 300px 1fr;
+                grid-template-columns: 340px 1fr;
             }
 
             .connected-left {
@@ -1408,23 +1411,37 @@
 
         .aerial-badge {
             position: absolute;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 6px 16px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 5px 14px;
             border-radius: 20px;
-            font-size: 0.82rem;
+            font-size: 0.78rem;
             font-weight: 500;
             backdrop-filter: blur(4px);
             cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.14);
+        }
+
+        .aerial-badge::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid rgba(255, 255, 255, 0.95);
         }
 
         .lote8 {
-            top: 35%;
-            left: 45%;
+            top: 30%;
+            left: 44%;
         }
 
         .lote7 {
-            top: 42%;
-            left: 55%;
+            top: 38%;
+            left: 56%;
         }
 
         .efficiency-orig {
@@ -1466,7 +1483,7 @@
         }
 
         .feat-icon {
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             color: var(--orange);
         }
 
@@ -1514,7 +1531,8 @@
         .contact-left p {
             color: var(--dark);
             line-height: 1.7;
-            font-size: 0.95rem;
+            font-size: 0.87rem;
+            max-width: 280px;
         }
 
         .contact-right {
