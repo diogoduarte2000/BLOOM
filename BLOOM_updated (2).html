@@ -164,9 +164,9 @@
         .hero {
             position: relative;
             height: 80svh;
-            min-height: 560px;
+            min-height: 850px;
             padding: 1.25rem;
-            background: var(--cream);
+            background: var(--cream-warm);
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.25rem;
@@ -239,8 +239,8 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding: 2.5rem 0 1rem;
+            justify-content: flex-end;
+            padding: 2.5rem 0 5rem;
         }
 
         .hero-eyebrow {
@@ -259,7 +259,7 @@
             color: var(--white);
             line-height: 1.0;
             letter-spacing: -0.02em;
-            margin-bottom: auto;
+            margin-bottom: 0;
         }
 
         /* ── Bottom block ── */
@@ -281,6 +281,7 @@
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
+            padding-bottom: 90px;
         }
 
         /* Botão primário (dark pill com arrow) */
@@ -361,7 +362,7 @@
 
         /* ─── SECTION: INTRO TEXT ─────────────────────────────────── */
         .intro {
-            background: var(--cream);
+            background: #f9eede;
             padding: 7rem var(--pad-x);
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -403,7 +404,7 @@
 
         /* ─── SECTION: NOT FINISHED ──────────────────────────────── */
         .not-finished {
-            background: var(--cream-warm);
+            background: #faefde;
             padding: 5rem var(--pad-x);
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -622,7 +623,7 @@
         /* ─── SECTION: CONNECTED ──────────────────────────────────── */
         /* ✅ CORRIGIDO: altura fixa no mapa, grid sem min-height livre */
         .connected {
-            background: var(--cream);
+            background: #faefde;
             padding: 0;
             display: grid;
             grid-template-columns: 420px 1fr;
@@ -631,7 +632,7 @@
         }
 
         .connected-left {
-            background: var(--cream);
+            background: #faefde;
             padding: 7.7rem 2.5rem 7.7rem var(--pad-x);
             display: flex;
             flex-direction: column;
@@ -676,10 +677,11 @@
             width: auto;
             max-width: none;
             display: block;
+            color: --cream-warm;
         }
 
         .connected-icons {
-            background: var(--white);
+            background: #ffffff;
             grid-column: 1 / -1;
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -691,7 +693,8 @@
         .ci-item {
             display: flex;
             align-items: flex-start;
-            gap: .6rem;
+            gap: 4rem;
+            font-style: bold;
         }
 
         .ci-icon {
@@ -704,15 +707,15 @@
         }
 
         .ci-text {
-            font-size: .78rem;
+            font-size: 1rem;
             color: var(--muted);
             line-height: 1.5;
         }
 
         /* ─── SECTION: DISCOVER ───────────────────────────────────── */
         .discover-wrap {
-            padding: 4rem 0 5rem;
-            background: var(--cream);
+            padding: 4rem var(--pad-x) 5rem;
+            background: #ffffff;
         }
 
         .discover {
@@ -754,6 +757,10 @@
             flex-wrap: nowrap;
         }
 
+        .discover-ctas .btn {
+            white-space: nowrap;
+        }
+
         .discover-right {
             padding: 1.25rem 1.25rem 1.25rem 0;
             display: flex;
@@ -770,7 +777,7 @@
 
         /* ─── SECTION: AVAILABLE HOMES ────────────────────────────── */
         .homes {
-            background: var(--cream-warm);
+            background: #faefde;
             padding: 5rem clamp(1rem, 3vw, 3rem);
         }
 
@@ -788,10 +795,10 @@
         }
 
         .homes-desc {
-            font-size: .83rem;
+            font-size: 1.25rem;
             color: var(--muted);
             line-height: 1.7;
-            max-width: 320px;
+            max-width: 500px;
         }
 
         .homes-filters {
@@ -905,7 +912,7 @@
 
         /* ─── SECTION: WHAT BLOOM OFFERS ─────────────────────────── */
         .offers {
-            background: var(--cream-warm);
+            background: #ffffff;
             padding: 5rem var(--pad-x);
             text-align: center;
         }
@@ -943,7 +950,7 @@
 
         /* ─── SECTION: PLOTS FOR SALE ─────────────────────────────── */
         .plots {
-            background: var(--cream-warm);
+            background: #faefde;
             padding: 5rem var(--pad-x);
         }
 
@@ -972,7 +979,7 @@
 
         /* ─── SECTION: EFFICIENCY ─────────────────────────────────── */
         .efficiency {
-            background: var(--cream-2);
+            background: #faefde;
             padding: 5rem var(--pad-x);
         }
 
@@ -1033,7 +1040,7 @@
 
         /* ─── SECTION: LET'S TALK ─────────────────────────────────── */
         .talk {
-            background: var(--cream);
+            background: #faefde;
             padding: 5rem var(--pad-x);
             display: grid;
             grid-template-columns: 1fr 1.5fr;
