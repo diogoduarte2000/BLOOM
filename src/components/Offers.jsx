@@ -1,7 +1,7 @@
 const offers = [
   { icon: '/icons/Icon.svg', title: 'Privacy', body: 'Your personal space, essential and well-designed, ready to grow with you.' },
   { icon: '/icons/Vector-11.svg', title: 'Community', body: 'Shared spaces that create safety and belonging.' },
-  { icon: '/icons/Vector-6.svg', title: 'Well-being', body: 'Access to the city with green areas and outdoor spaces to relax, breathe, and reset.' },
+  { icon: '/icons/Vector-6.svg', title: 'Well-being', body: 'Ecovia do Rio Leça with green areas and outdoor spaces to relax, breathe, and reset.' },
   { icon: '/icons/Vector-13.svg', title: 'Proximity', body: 'Easy access to the key points of your daily routine.' },
   { icon: '/icons/Vector-14.svg', title: 'Convenience', body: 'Everything you need, right at your doorstep. Includes 7 commercial spaces on the ground floor.' },
 ]
