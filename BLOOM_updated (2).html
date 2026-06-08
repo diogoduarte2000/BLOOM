@@ -1,0 +1,2763 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bloom Living — A home to bloom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        /* ─── TOKENS ─────────────────────────────────────────────── */
+        :root {
+            --orange: #EF8354;
+            --orange-deep: #9A3412;
+            --cream: #FAF7F2;
+            --cream-2: #E8DDD0;
+            --cream-warm: #F9EDDD;
+            --dark: #1C1C2E;
+            --dark-2: #20405e;
+            --text: #252e46;
+            --muted: #38365e;
+            --white: #FFFFFF;
+            --serif: 'scale-variable', -apple-system, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+            --sans: 'scale-variable', 'DM Sans', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+            --radius: 4px;
+            --max: 1440px;
+            --pad-x: clamp(2rem, 5vw, 7rem);
+        }
+
+        /* ─── RESET ──────────────────────────────────────────────── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 17px;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        em {
+            font-style: normal;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+        }
+
+        /* ─── UTILITY ─────────────────────────────────────────────── */
+        .container {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 var(--pad-x);
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+        }
+
+        /* ─── BUTTONS ─────────────────────────────────────────────── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .7rem 1.6rem;
+            border-radius: 99px;
+            font-size: .9rem;
+            font-weight: 500;
+            letter-spacing: .02em;
+            cursor: pointer;
+            border: none;
+            transition: opacity .2s, transform .15s;
+        }
+
+        .btn:hover {
+            opacity: .85;
+            transform: translateY(-1px);
+        }
+
+        .btn-dark {
+            background: var(--dark);
+            color: var(--white);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--dark);
+            border: 1.5px solid var(--dark);
+        }
+
+        .btn-orange {
+            background: var(--orange);
+            color: var(--white);
+        }
+
+        .btn-orange-outline {
+            background: transparent;
+            color: var(--orange);
+            border: 1.5px solid var(--orange);
+        }
+
+        .btn-dark-solid {
+            background: var(--dark);
+            color: var(--white);
+            border-radius: var(--radius);
+            padding: .75rem 1.6rem;
+            font-size: .85rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            transition: opacity .2s;
+        }
+
+        .btn-dark-solid:hover {
+            opacity: .85;
+        }
+
+        .btn svg,
+        .btn-orange-outline svg {
+            width: 14px;
+            height: 14px;
+        }
+
+
+
+        /* ─── HERO ─────────────────────────────────────────────────── */
+        .hero {
+            position: relative;
+            height: 80svh;
+            min-height: 850px;
+            padding: 1.25rem;
+            background: var(--cream-warm);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            overflow: hidden;
+        }
+
+        .hero-left {
+            background: var(--orange);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 2rem 2.5rem 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ── Nav dentro do hero-left ── */
+        .hero-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hero-logo {
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-nav-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .hero-nav-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1.5px solid var(--dark);
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            color: var(--dark);
+            transition: background 0.2s, color 0.2s;
+            font-family: var(--sans);
+        }
+
+        .hero-nav-btn:hover {
+            background: var(--dark);
+            color: var(--orange);
+        }
+
+        .hero-nav-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ── Conteúdo central ── */
+        .hero-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2.5rem 0 5rem;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: var(--dark);
+            opacity: 0.85;
+            margin-bottom: 1rem;
+            letter-spacing: 0.01em;
+        }
+
+        .hero-title {
+            font-family: var(--sans);
+            font-size: clamp(3.8rem, 7vw, 6.5rem);
+            font-weight: 300;
+            color: var(--white);
+            line-height: 1.0;
+            letter-spacing: -0.02em;
+            margin-bottom: 0;
+        }
+
+        /* ── Bottom block ── */
+        .hero-bottom {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .hero-sub {
+            font-size: 0.875rem;
+            font-weight: 400;
+            color: var(--dark);
+            line-height: 1.55;
+            max-width: 380px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding-bottom: 90px;
+        }
+
+        /* Botão primário (dark pill com arrow) */
+        .btn-hero-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--dark);
+            color: var(--white);
+            border: none;
+            border-radius: 100px;
+            padding: 0.85rem 1.6rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s;
+            font-family: var(--sans);
+        }
+
+        .btn-hero-primary:hover {
+            background: #333;
+            transform: translateY(-1px);
+        }
+
+        .btn-hero-primary .arrow-icon,
+        .arrow-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .btn-hero-primary .arrow-icon svg,
+        .arrow-icon svg {
+            width: 12px;
+            height: 12px;
+            stroke: white;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Botão secundário (outline pill) */
+        .btn-hero-secondary {
+            display: inline-flex;
+            align-items: center;
+            background: var(--white);
+            color: var(--dark);
+            border: 1.5px solid var(--white);
+            border-radius: 100px;
+            padding: 0.85rem 1.6rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+            font-family: var(--sans);
+        }
+
+        .btn-hero-secondary:hover {
+            background: var(--dark);
+            color: var(--white);
+            border-color: var(--dark);
+        }
+
+        .hero-right {
+            position: relative;
+            background: var(--cream-2);
+            overflow: hidden;
+        }
+
+        .hero-right img {
+            position: absolute;
+            inset: 0;
+        }
+
+        /* ─── SECTION: INTRO TEXT ─────────────────────────────────── */
+        .intro {
+            background: #f9eede;
+            padding: 7rem var(--pad-x);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .intro-title {
+            font-family: var(--serif);
+            font-size: clamp(2.2rem, 3.5vw, 3.6rem);
+            font-weight: 500;
+            line-height: 1.15;
+        }
+
+        .intro-title em {
+            color: grey;
+            font-style: normal;
+        }
+
+        .intro-body {
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: var(--muted);
+            line-height: 1.8;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        /* ─── SECTION: FULL PHOTO ─────────────────────────────────── */
+        .full-photo {
+            height: 520px;
+            overflow: hidden;
+        }
+
+        .full-photo img {
+            height: 100%;
+        }
+
+        /* ─── SECTION: NOT FINISHED ──────────────────────────────── */
+        .not-finished {
+            background: #faefde;
+            padding: 5rem var(--pad-x);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .nf-tag {
+            font-size: .8rem;
+            font-weight: 600;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        .nf-title {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.2rem;
+        }
+
+        .nf-title em {
+            color: var(--orange);
+            font-style: normal;
+        }
+
+        .nf-body {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            max-width: 420px;
+        }
+
+        .nf-accordion {
+            border-top: 1px solid rgba(0, 0, 0, .1);
+        }
+
+        .nf-item {
+            border-bottom: 1px solid rgba(0, 0, 0, .1);
+            padding: 1.4rem 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background .15s;
+        }
+
+        .nf-item.open {
+            background: var(--white);
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .nf-item-inner {
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+        }
+
+        .nf-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--orange);
+            flex-shrink: 0;
+            object-fit: contain;
+        }
+
+        .nf-item-label {
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .nf-item-arrow {
+            font-size: 1.1rem;
+            color: var(--text);
+            transition: transform .3s;
+            display: inline-block;
+            line-height: 1;
+        }
+
+        .nf-item.open .nf-item-arrow {
+            transform: rotate(180deg);
+        }
+
+        .nf-item-body {
+            font-size: .95rem;
+            font-weight: 400;
+            color: var(--muted);
+            line-height: 1.7;
+            padding: 0 1.2rem 1.4rem 4.6rem;
+            display: none;
+            background: var(--white);
+            border-radius: 0 0 4px 4px;
+            margin-bottom: .25rem;
+        }
+
+        .nf-item.open+.nf-item-body {
+            display: block;
+        }
+
+        /* ─── SECTION: DESIGNED WITH INTENTION ───────────────────── */
+        .intention {
+            background: var(--cream);
+            padding: 5rem var(--pad-x);
+            text-align: center;
+        }
+
+        .section-eyebrow {
+            font-size: .75rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: .75rem;
+        }
+
+        .section-title {
+            font-family: var(--serif);
+            font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+        }
+
+        .section-title em {
+            color: var(--orange);
+            font-style: normal;
+        }
+
+        .section-sub {
+            font-size: .9rem;
+            font-weight: 400;
+            color: var(--muted);
+            line-height: 1.7;
+            max-width: 520px;
+            margin: 0 auto 3rem;
+        }
+
+        /* ─── GALLERY GRID ──────────────────────────────────────── */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: 1fr 2.3fr 1.5fr;
+            gap: 0.5rem;
+            height: 780px;
+        }
+
+        .gallery-col {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            min-height: 0;
+        }
+
+        .gallery-col-side {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        /* Right column has less offset — images fill more height */
+        .photo-grid > .gallery-col:last-child {
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .gallery-col>div {
+            overflow: hidden;
+            border-radius: 0;
+            background: var(--cream-2);
+            min-height: 0;
+        }
+
+        .gallery-col img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .4s;
+        }
+
+        .gallery-col>div:hover img {
+            transform: scale(1.04);
+        }
+
+        /* Col 1 (esq): p1=pequena, p4=pequena, p7=GRANDE */
+        .photo-grid .p1 { flex: 2.5; }
+        .photo-grid .p4 { flex: 2.5; }
+        .photo-grid .p7 { flex: 5; }
+
+        /* Col 2 (centro): p2=GRANDE, p5=pequena, p8=pequena */
+        .photo-grid .p2 { flex: 5; }
+        .photo-grid .p5 { flex: 2.5; }
+        .photo-grid .p8 { flex: 2.5; }
+
+        /* Col 3 (dir): p3=pequena, p6=GRANDE, p9=menor */
+        .photo-grid .p3 { flex: 2.5; }
+        .photo-grid .p6 { flex: 5; }
+        .photo-grid .p9 { flex: 2; }
+
+        .img-placeholder {
+            width: 100%;
+            height: 100%;
+            background: var(--cream-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .7rem;
+            color: var(--muted);
+            text-align: center;
+            padding: .5rem;
+        }
+
+        /* ─── SECTION: CONNECTED ──────────────────────────────────── */
+        /* ✅ CORRIGIDO: altura fixa no mapa, grid sem min-height livre */
+        .connected {
+            background: #faefde;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            gap: 0;
+            overflow: hidden;
+        }
+
+        .connected-left {
+            background: #faefde;
+            padding: 7.7rem 2.5rem 7.7rem var(--pad-x);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-self: stretch;
+            z-index: 1;
+        }
+
+        .connected-left .section-title {
+            color: var(--text);
+            margin-bottom: 1.2rem;
+            font-size: clamp(1.8rem, 2.4vw, 2.4rem);
+            line-height: 1.15;
+            white-space: nowrap;
+        }
+
+        .connected-left .section-title em {
+            color: var(--orange);
+            font-style: normal;
+        }
+
+        .connected-body {
+            font-size: .88rem;
+            color: var(--muted);
+            line-height: 1.75;
+            max-width: 320px;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 616px;
+            background: var(--cream);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .map-placeholder img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: auto;
+            max-width: none;
+            display: block;
+            color: --cream-warm;
+        }
+
+        .connected-icons {
+            background: #ffffff;
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            padding: 2.5rem var(--pad-x);
+            border-top: 1px solid #e8e0d5;
+        }
+
+        .ci-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 4rem;
+            font-style: bold;
+        }
+
+        .ci-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--orange);
+            flex-shrink: 0;
+            margin-top: 2px;
+            object-fit: contain;
+        }
+
+        .ci-text {
+            font-size: 1rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        /* ─── SECTION: DISCOVER ───────────────────────────────────── */
+        .discover-wrap {
+            padding: 4rem var(--pad-x) 5rem;
+            background: #ffffff;
+        }
+
+        .discover {
+            background: var(--orange);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 340px;
+            border-radius: 0;
+            overflow: hidden;
+        }
+
+        .discover-left {
+            padding: 4rem 3rem 4rem 3.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .discover-title {
+            font-family: var(--serif);
+            font-size: clamp(1.8rem, 2.8vw, 2.8rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .discover-body {
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .88);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            max-width: 300px;
+        }
+
+        .discover-ctas {
+            display: flex;
+            gap: .75rem;
+            flex-wrap: nowrap;
+        }
+
+        .discover-ctas .btn {
+            white-space: nowrap;
+        }
+
+        .discover-right {
+            padding: 1.25rem 1.25rem 1.25rem 0;
+            display: flex;
+            align-items: stretch;
+        }
+
+        .discover-right img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 0;
+            display: block;
+        }
+
+        /* ─── SECTION: AVAILABLE HOMES ────────────────────────────── */
+        .homes {
+            background: #faefde;
+            padding: 5rem clamp(1rem, 3vw, 3rem);
+        }
+
+        .homes-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2.5rem;
+        }
+
+        .homes-title {
+            font-family: var(--serif);
+            font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+            font-weight: 700;
+        }
+
+        .homes-desc {
+            font-size: 1.25rem;
+            color: var(--muted);
+            line-height: 1.7;
+            max-width: 500px;
+        }
+
+        .homes-filters {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: .4rem;
+            align-items: center;
+        }
+
+        .filter-label {
+            font-size: .7rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--orange);
+            width: 100%;
+            margin-bottom: .1rem;
+        }
+
+        .filter-chip {
+            padding: .3rem .8rem;
+            border-radius: 99px;
+            font-size: .72rem;
+            font-weight: 500;
+            border: 1.5px solid var(--cream-2);
+            background: var(--white);
+            color: var(--dark);
+            cursor: pointer;
+            transition: background .15s, color .15s, border-color .15s;
+        }
+
+        .filter-chip.active {
+            background: var(--dark);
+            color: var(--white);
+            border-color: var(--dark);
+        }
+
+        .filter-chip.available {
+            background: var(--white);
+            color: var(--dark);
+            border-color: var(--cream-2);
+        }
+
+        .filter-chip.reserved {
+            background: var(--white);
+            color: var(--dark);
+            border: 1.5px solid var(--cream-2);
+            border-radius: 99px;
+        }
+
+        .homes-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .homes-table th {
+            text-align: left;
+            font-size: .7rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: .6rem 2rem .6rem 0;
+            border-bottom: 1.5px solid var(--cream-2);
+        }
+
+        .homes-table td {
+            font-size: .83rem;
+            padding: 1rem 2rem 1rem 0;
+            border-bottom: 1px solid var(--cream-2);
+            vertical-align: middle;
+        }
+
+        .homes-table th:last-child,
+        .homes-table td:last-child {
+            padding-right: 0;
+            text-align: right;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: .25rem .8rem;
+            border-radius: 99px;
+            font-size: .7rem;
+            font-weight: 500;
+        }
+
+        .status-badge.available {
+            border: 1.5px solid var(--cream-2);
+            color: var(--muted);
+        }
+
+        .status-badge.reserved {
+            border: 1.5px solid var(--dark);
+            color: var(--dark);
+        }
+
+        .homes-note {
+            font-size: .72rem;
+            color: var(--muted);
+            margin-top: 1rem;
+        }
+
+        /* ─── SECTION: WHAT BLOOM OFFERS ─────────────────────────── */
+        .offers {
+            background: #ffffff;
+            padding: 5rem var(--pad-x);
+            text-align: center;
+        }
+
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            text-align: left;
+        }
+
+        .offer-item {}
+
+        .offer-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--orange);
+            margin-bottom: 1rem;
+            object-fit: contain;
+            display: block;
+        }
+
+        .offer-title {
+            font-size: .85rem;
+            font-weight: 600;
+            margin-bottom: .5rem;
+        }
+
+        .offer-body {
+            font-size: .78rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* ─── SECTION: PLOTS FOR SALE ─────────────────────────────── */
+        .plots {
+            background: #faefde;
+            padding: 5rem var(--pad-x);
+        }
+
+        .plots-title {
+            font-family: var(--serif);
+            font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+            font-weight: 700;
+            margin-bottom: .8rem;
+        }
+
+        .plots-body {
+            font-size: .85rem;
+            color: var(--muted);
+            line-height: 1.7;
+            max-width: 380px;
+            margin-bottom: 2rem;
+        }
+
+        .plots-img {
+            width: 100%;
+            height: 400px;
+            border-radius: 4px;
+            overflow: hidden;
+            background: var(--cream-2);
+        }
+
+        /* ─── SECTION: EFFICIENCY ─────────────────────────────────── */
+        .efficiency {
+            background: #faefde;
+            padding: 5rem var(--pad-x);
+        }
+
+        .efficiency-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .efficiency-title {
+            font-family: var(--serif);
+            font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+            font-weight: 700;
+        }
+
+        .efficiency-title em {
+            color: var(--orange);
+            font-style: normal;
+        }
+
+        .efficiency-sub {
+            font-size: .85rem;
+            color: var(--muted);
+            line-height: 1.7;
+            max-width: 500px;
+            margin: .75rem auto 0;
+        }
+
+        .efficiency-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .eff-card {
+            background: var(--cream-2);
+            border-radius: 4px;
+            padding: 1.8rem;
+        }
+
+        .eff-icon {
+            width: 28px;
+            height: 28px;
+            color: var(--orange);
+            margin-bottom: 1.2rem;
+        }
+
+        .eff-title {
+            font-size: .85rem;
+            font-weight: 600;
+            margin-bottom: .6rem;
+        }
+
+        .eff-body {
+            font-size: .78rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* ─── SECTION: LET'S TALK ─────────────────────────────────── */
+        .talk {
+            background: #faefde;
+            padding: 5rem var(--pad-x);
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 0;
+            align-items: stretch;
+        }
+
+        .talk-left {
+            background: var(--orange);
+            border-radius: 4px 0 0 4px;
+            padding: 3.5rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .talk-title {
+            font-family: var(--serif);
+            font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .talk-body {
+            font-size: .87rem;
+            color: rgba(255, 255, 255, .88);
+            line-height: 1.8;
+        }
+
+        .talk-right {
+            background: var(--white);
+            border-radius: 0 4px 4px 0;
+            padding: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: .72rem;
+            font-weight: 600;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: .4rem;
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: .65rem .9rem;
+            border: 1px solid var(--cream-2);
+            border-radius: var(--radius);
+            font-size: .83rem;
+            background: var(--cream);
+            color: var(--text);
+            outline: none;
+            transition: border-color .2s;
+            appearance: none;
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            border-color: var(--orange);
+        }
+
+        .form-select-wrap {
+            position: relative;
+        }
+
+        .form-select-wrap::after {
+            content: '▾';
+            position: absolute;
+            right: .9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            font-size: .8rem;
+            color: var(--muted);
+        }
+
+        .form-checkboxes {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: .4rem;
+        }
+
+        .form-checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            font-size: .83rem;
+            cursor: pointer;
+        }
+
+        .form-checkbox-label input {
+            accent-color: var(--orange);
+            width: 15px;
+            height: 15px;
+        }
+
+        .form-consent {
+            display: flex;
+            align-items: flex-start;
+            gap: .5rem;
+            margin-top: 1rem;
+            font-size: .75rem;
+            color: var(--muted);
+            line-height: 1.5;
+            cursor: pointer;
+        }
+
+        .form-consent input {
+            accent-color: var(--orange);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .form-submit {
+            margin-top: 1.4rem;
+        }
+
+        /* ─── FOOTER ──────────────────────────────────────────────── */
+        .footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 4rem var(--pad-x) 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .footer-logo {
+            font-family: var(--sans);
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-contact p {
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .55);
+            line-height: 2;
+        }
+
+        .footer-nav-title {
+            font-size: .7rem;
+            font-weight: 600;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .4);
+            margin-bottom: 1rem;
+        }
+
+        .footer-nav-list li {
+            margin-bottom: .5rem;
+        }
+
+        .footer-nav-list a {
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .6);
+            transition: color .2s;
+        }
+
+        .footer-nav-list a:hover {
+            color: var(--white);
+        }
+
+        .footer-reserve {
+            margin-top: 1.5rem;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            font-size: .72rem;
+            color: rgba(255, 255, 255, .3);
+        }
+
+        .footer-bottom a {
+            color: rgba(255, 255, 255, .4);
+            transition: color .2s;
+        }
+
+        .footer-bottom a:hover {
+            color: var(--white);
+        }
+
+        .footer-img {
+            width: 100%;
+            height: 300px;
+            margin-top: 0;
+            overflow: hidden;
+        }
+
+        .footer-img img {
+            opacity: .6;
+        }
+
+        /* ─── RESPONSIVE: TABLET (iPad mini ~768px) ───────────────── */
+        @media (max-width: 900px) {
+            :root {
+                --pad-x: 2rem;
+            }
+
+            .hero {
+                grid-template-columns: 1fr 1fr;
+                height: 100svh;
+                min-height: 520px;
+                padding: 1rem;
+            }
+
+            .hero-left {
+                padding: 3rem 2rem 2.5rem;
+            }
+
+            .hero-right {
+                height: auto;
+            }
+
+            .intro {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 4rem var(--pad-x);
+            }
+
+            .intro-body {
+                max-width: 100%;
+            }
+
+            .not-finished {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+
+            .photo-grid {
+                height: 600px;
+            }
+
+            .gallery-col-side {
+                padding-top: 1.8rem;
+                padding-bottom: 1.8rem;
+            }
+
+            .photo-grid > .gallery-col:last-child {
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+            }
+
+            .connected {
+                grid-template-columns: 340px 1fr;
+            }
+
+            .connected-left {
+                padding: 3rem 2rem 3rem var(--pad-x);
+            }
+
+            .map-placeholder {
+                height: 360px;
+                justify-content: flex-end;
+            }
+
+            .connected-icons {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 2rem var(--pad-x);
+            }
+
+            .discover {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .discover-right {
+                height: auto;
+            }
+
+            .homes-header {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .homes-desc {
+                max-width: 100%;
+            }
+
+            .offers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .efficiency-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .talk {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .talk-left {
+                border-radius: 4px 4px 0 0;
+                padding: 2.5rem;
+            }
+
+            .talk-right {
+                border-radius: 0 0 4px 4px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+        /* ─── PLOTS / EFFICIENCY / CONTACT / FOOTER / BANNER (original design) ── */
+        .section-divider-orig {
+            height: 1px;
+            background: rgba(0, 0, 0, 0.1);
+            margin: 0 var(--pad-x);
+        }
+
+        .plots-section {
+            padding: 5rem 3rem;
+            background: var(--cream);
+        }
+
+        .plots-section h2 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .plots-section>p {
+            color: var(--muted);
+            max-width: 400px;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            font-size: .9rem;
+        }
+
+        .aerial-img {
+            width: 100%;
+            height: 520px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+            background: linear-gradient(135deg, #8fa8a4 0%, #6d8e8a 100%);
+        }
+
+        .img-placeholder-label {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            background: rgba(0, 0, 0, 0.25);
+            padding: 6px 16px;
+            border-radius: 20px;
+        }
+
+        .plots-img-wrap {
+            position: relative;
+        }
+
+        .aerial-badge {
+            position: absolute;
+            background: rgba(232, 238, 252, 0.96);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: #1c2a48;
+            backdrop-filter: blur(6px);
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+            white-space: nowrap;
+        }
+
+        .aerial-badge::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 22%;
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid rgba(232, 238, 252, 0.96);
+        }
+
+        .lote8 {
+            top: 43%;
+            left: 44%;
+        }
+
+        .lote7 {
+            top: 47%;
+            left: 53%;
+        }
+
+        .efficiency-orig {
+            padding: 5rem 3rem;
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .efficiency-orig h2 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .efficiency-orig h2 span {
+            color: var(--orange);
+        }
+
+        .efficiency-orig>p {
+            color: var(--muted);
+            max-width: 520px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+            font-size: .9rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            text-align: left;
+        }
+
+        .feat-card {
+            background: #F0E8DC;
+            border-radius: 0;
+            padding: 2rem 1.5rem;
+        }
+
+        .feat-icon {
+            margin-bottom: 4rem;
+            color: var(--orange);
+        }
+
+        .feat-card h3 {
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .feat-card p {
+            font-size: 0.83rem;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .contact-section {
+            padding: 5rem 3rem;
+            background: var(--cream);
+        }
+
+        .contact-inner {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            border-radius: 0;
+            overflow: hidden;
+            min-height: 500px;
+        }
+
+        .contact-left {
+            background: var(--orange);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .contact-left h2 {
+            font-family: var(--serif);
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-left p {
+            color: var(--dark);
+            line-height: 1.7;
+            font-size: 0.87rem;
+            max-width: 280px;
+        }
+
+        .contact-right {
+            background: #fff;
+            padding: 3rem;
+        }
+
+        .form-group-orig {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group-orig label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+            color: var(--dark);
+        }
+
+        .form-group-orig input,
+        .form-group-orig select {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 0.5px solid #ddd;
+            border-radius: 0;
+            font-family: var(--sans);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color .2s;
+            background: #fff;
+            color: var(--dark);
+        }
+
+        .form-group-orig input:focus,
+        .form-group-orig select:focus {
+            border-color: var(--orange);
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 0.4rem;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.88rem;
+            cursor: pointer;
+        }
+
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .terms input {
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .terms label {
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .btn-send {
+            width: 100%;
+            padding: 0.9rem;
+            background: var(--dark);
+            color: #fff;
+            border: none;
+            border-radius: 0;
+            font-family: var(--sans);
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background .2s;
+        }
+
+        .btn-send:hover {
+            background: #1e3a52;
+        }
+
+        .footer-orig {
+            background: #112233;
+            padding: 4rem clamp(2rem, 5vw, 5rem) 0;
+            overflow: hidden;
+        }
+
+        .footer-top-orig {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand {
+            flex: 0 0 auto;
+            max-width: 340px;
+        }
+
+        .footer-cols-right {
+            display: flex;
+            gap: 5rem;
+            justify-content: flex-end;
+        }
+
+        .footer-brand h2 {
+            font-family: var(--sans);
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            line-height: 1.05;
+        }
+
+        .footer-info {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 0.88rem;
+            line-height: 1.9;
+        }
+
+        .footer-btn-orig {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--orange);
+            color: #fff;
+            border: none;
+            padding: 0.65rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 2rem;
+        }
+
+        .footer-col h4 {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.78rem;
+            letter-spacing: 0.04em;
+            text-transform: none;
+            margin-bottom: 1.4rem;
+            font-weight: 400;
+        }
+
+        .footer-col a {
+            display: block;
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+            transition: color .2s;
+        }
+
+        .footer-col a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom-orig {
+            border-top: none;
+            padding: 1.5rem 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom-orig p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.82rem;
+        }
+
+        .footer-legal-orig {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-legal-orig a {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.82rem;
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        .footer-legal-orig a:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Bottom banner — with side and bottom spacing like Figma */
+        .bottom-banner-orig {
+            position: relative;
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: 1.5rem;
+            width: 100%;
+            height: 360px;
+            overflow: hidden;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #b8c4c0 0%, #8fa4a0 50%, #6d8a87 100%);
+            padding: 0;
+        }
+
+        .bottom-banner-overlay-orig {
+            position: absolute;
+            inset: 0;
+            background: rgba(13, 27, 42, 0.35);
+
+        }
+
+        .bottom-banner-logo-orig {
+            position: relative;
+            z-index: 2;
+            font-family: var(--serif);
+            font-size: clamp(3rem, 9vw, 7rem);
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.85);
+            letter-spacing: -0.02em;
+
+        }
+
+        .bottom-banner-nav-orig {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(0, 0, 0, 0.45);
+            border-radius: 50px;
+            padding: 0.4rem 1rem;
+        }
+
+        .bbn-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity .2s;
+            padding: 0 4px;
+        }
+
+        .bbn-btn:hover {
+            opacity: 1;
+        }
+
+        .bbn-counter {
+            color: #fff;
+            font-size: 0.85rem;
+            min-width: 36px;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .section-divider-orig {
+                margin: 0 1.5rem;
+            }
+
+            .plots-section,
+            .efficiency-orig,
+            .contact-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .contact-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top-orig {
+                flex-direction: column;
+            }
+
+            .footer-cols-right {
+                gap: 3rem;
+            }
+
+            .footer-orig {
+                padding: 3rem 2rem 0;
+            }
+
+            .bottom-banner-orig {
+                margin-left: -2rem;
+                margin-right: -2rem;
+                width: calc(100% + 4rem);
+                height: 280px;
+            }
+
+            .aerial-img {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .aerial-img {
+                height: 240px;
+            }
+
+            .bottom-banner-orig {
+                height: 220px;
+            }
+        }
+
+        /* ─── RESPONSIVE: MOBILE (iPhone 13/14 ~390px) ───────────── */
+        @media (max-width: 480px) {
+            :root {
+                --pad-x: 1.25rem;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                height: auto;
+                padding: 0.75rem;
+            }
+
+            .hero-left {
+                padding: 3rem 1.25rem 2.5rem;
+                min-height: 420px;
+            }
+
+            .hero-title {
+                font-size: 2.4rem;
+            }
+
+            .hero-right {
+                height: 240px;
+            }
+
+            .hero-ctas {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .intro {
+                padding: 3rem 1.25rem;
+            }
+
+            .intro-title {
+                font-size: 1.6rem;
+            }
+
+            .full-photo {
+                height: 260px;
+            }
+
+            .not-finished {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 3rem 1.25rem;
+            }
+
+            .nf-title {
+                font-size: 1.5rem;
+            }
+
+            .intention {
+                padding: 3rem 1.25rem;
+            }
+
+            .gallery-col,
+            .gallery-col-side {
+                display: contents;
+                padding: 0 !important;
+            }
+
+            /* Mobile gallery — 6 rows
+               Left (esquerda, maior): p1(1), p3(2), p5(3), p7(4-5 span), p9(6)
+               Right (direita, menor): p2(1-2 span), p4(3), p6(4-5 span), p8(6)
+            */
+            .photo-grid {
+                display: grid !important;
+                height: auto !important;
+                grid-template-columns: 1.4fr 1fr;
+                grid-template-rows: repeat(6, 110px);
+                gap: 0.4rem;
+            }
+
+            /* LEFT COLUMN — p1, p3, p5, p7 (span 2), p9 */
+            .photo-grid .p1 { grid-column: 1; grid-row: 1; }
+            .photo-grid .p3 { grid-column: 1; grid-row: 2; }
+            .photo-grid .p5 { grid-column: 1; grid-row: 3; }
+            .photo-grid .p7 { grid-column: 1; grid-row: 4 / 6; }
+            .photo-grid .p9 { grid-column: 1; grid-row: 6; }
+
+            /* RIGHT COLUMN — p2 (span 2), p4, p6 (span 2), p8 */
+            .photo-grid .p2 { grid-column: 2; grid-row: 1 / 3; }
+            .photo-grid .p4 { grid-column: 2; grid-row: 3; }
+            .photo-grid .p6 { grid-column: 2; grid-row: 4 / 6; }
+            .photo-grid .p8 { grid-column: 2; grid-row: 6; }
+
+            .connected {
+                grid-template-columns: 1fr;
+            }
+
+            .connected-left {
+                padding: 3rem 1.25rem;
+            }
+
+            .map-placeholder {
+                height: 280px;
+                justify-content: center;
+            }
+
+            .map-placeholder img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .connected-icons {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+                padding: 1.5rem 1.25rem;
+            }
+
+            .discover-wrap {
+                padding: 0 1.25rem 3rem;
+            }
+
+            .discover {
+                grid-template-columns: 1fr;
+            }
+
+            .discover-left {
+                padding: 2.5rem 1.25rem;
+            }
+
+            .discover-right {
+                height: 180px;
+            }
+
+            .discover-ctas {
+                flex-wrap: nowrap;
+            }
+
+            .discover-ctas .btn {
+                flex: 1;
+                justify-content: center;
+                font-size: .65rem;
+                padding: .5rem .5rem;
+                white-space: nowrap;
+            }
+
+            .homes {
+                padding: 3rem 1rem;
+            }
+
+            .homes-table th:nth-child(5),
+            .homes-table td:nth-child(5),
+            .homes-table th:nth-child(6),
+            .homes-table td:nth-child(6) {
+                display: none;
+            }
+
+            .offers {
+                padding: 3rem 1.25rem;
+            }
+
+            .offers-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .plots {
+                padding: 3rem 1.25rem;
+            }
+
+            .plots-img {
+                height: 240px;
+            }
+
+            /* Lotes mobile: spread them apart so they don't overlap */
+            .lote8 {
+                top: 33%;
+                left: 26%;
+            }
+
+            .lote7 {
+                top: 43%;
+                left: 53%;
+            }
+
+            .efficiency {
+                padding: 3rem 1.25rem;
+            }
+
+            .efficiency-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .talk {
+                padding: 3rem 1.25rem;
+                gap: 0;
+            }
+
+            .talk-left {
+                padding: 2rem;
+                border-radius: 4px 4px 0 0;
+            }
+
+            .talk-right {
+                padding: 1.5rem;
+                border-radius: 0 0 4px 4px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: .75rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════════════ -->
+    <section class="hero" id="home">
+        <div class="hero-left">
+            <!-- Nav -->
+            <div class="hero-nav">
+                <div class="hero-logo">
+                    <svg viewBox="0 0 120 23" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- B (width 18) -->
+                        <g transform="translate(0,0.5)">
+                            <path d="M0 0H10.2127C11.6404 0 12.867 0.17611 13.8914 0.527664C14.9158 0.879888 15.7123 1.4484 16.2818 2.23387C16.8506 3.02002 17.1353 4.06463 17.1353 5.36773C17.1353 7.08465 16.6797 8.4085 15.7693 9.33928C14.8581 10.2701 13.6375 10.7663 12.1067 10.8285V10.7355C13.2657 10.7562 14.2746 10.9424 15.1335 11.2939C15.9917 11.6461 16.6643 12.1885 17.1514 12.9231C17.6371 13.6577 17.8809 14.6139 17.8809 15.7931C17.8809 17.0962 17.5909 18.1877 17.012 19.0663C16.4325 19.9455 15.5891 20.6071 14.4823 21.0517C13.3749 21.497 11.9934 21.7187 10.338 21.7187H0.00134121V0H0ZM2.76287 18.7703H9.68479C11.154 18.7703 12.2252 18.5172 12.8979 18.0103C13.5698 17.5034 13.9068 16.6402 13.9068 15.4195C13.9068 14.3026 13.5604 13.4957 12.867 12.9995C12.1736 12.5033 11.1232 12.2548 9.71628 12.2548H2.9806V9.36942H9.40609C10.6683 9.36942 11.6203 9.09018 12.2621 8.53171C12.9032 7.97324 13.2248 7.09403 13.2248 5.89472C13.2248 4.79854 12.9247 4.02847 12.3244 3.58317C11.7241 3.13854 10.7614 2.91622 9.43758 2.91622H2.76354L3.78789 1.52005V20.198L2.76354 18.771L2.76287 18.7703Z" fill="currentColor"/>
+                        </g>
+                        <!-- L (width 5) -->
+                        <g transform="translate(21,0.5)">
+                            <path d="M0 0H4.29706V21.6892H0V0Z" fill="currentColor"/>
+                        </g>
+                        <!-- O (width 24) — Group.svg -->
+                        <g transform="translate(29,0)">
+                            <path d="M21.1502 15.2389C21.0624 14.0845 20.6966 12.8122 19.9657 11.497C20.7991 9.99172 21.1649 8.55202 21.1649 7.26567V7.2583C21.1649 3.92557 18.6861 1.61603 15.2566 1.8571C14.0943 1.94482 12.8214 2.3178 11.5056 3.04836C9.99956 2.21535 8.55917 1.84236 7.27219 1.84236C3.93048 1.84236 1.61983 4.31998 1.86101 7.75516C1.94877 8.9096 2.32193 10.1819 3.05285 11.497C2.21943 13.0024 1.84627 14.4494 1.84627 15.7358V15.7431C1.85364 19.0685 4.32508 21.378 7.75455 21.137C8.91692 21.0566 10.1818 20.6836 11.5056 19.9531C13.0116 20.7861 14.452 21.1517 15.739 21.1517H15.7464C19.0807 21.1517 21.3914 18.6667 21.1502 15.2389ZM11.5056 19.4267C7.12547 19.4267 3.57943 15.8751 3.57943 11.497C3.57943 7.11902 7.12547 3.57469 11.5056 3.57469C15.8857 3.57469 19.4318 7.12638 19.4318 11.497C19.4318 15.8677 15.8851 19.4267 11.5056 19.4267Z" fill="currentColor"/>
+                            <path d="M21.1649 7.26587V7.2585C20.2142 6.38866 18.9058 5.68689 17.2309 5.27775C16.7486 3.84541 16.0686 2.70504 15.2566 1.85729C12.9098 -0.62769 9.52384 -0.605592 7.27214 1.84256C6.40188 2.79276 5.6924 4.10791 5.28306 5.78197C3.85004 6.26411 2.70911 6.94378 1.86096 7.75536C-0.632595 10.1011 -0.603119 13.4854 1.84622 15.736V15.7433C2.79687 16.6132 4.11333 17.315 5.78753 17.7241C6.26252 19.1564 6.94252 20.2894 7.7545 21.1372C10.1013 23.6295 13.4873 23.6074 15.739 21.1519H15.7463C16.6166 20.2017 17.3261 18.8933 17.728 17.2199C19.1611 16.7377 20.302 16.0581 21.1501 15.2391C23.6437 12.9001 23.6142 9.51648 21.1649 7.26587ZM11.5055 19.427C7.12542 19.427 3.57938 15.8753 3.57938 11.4972C3.57938 7.11922 7.12542 3.57489 11.5055 3.57489C15.8857 3.57489 19.4317 7.12658 19.4317 11.4972C19.4317 15.8679 15.885 19.427 11.5055 19.427Z" fill="currentColor"/>
+                        </g>
+                        <!-- O cortado (width 12) — Vector-3.svg -->
+                        <g transform="translate(55,0)">
+                            <path d="M9.69618 7.25005V7.24268C8.74553 6.37284 7.43644 5.67107 5.76224 5.26193C5.27987 3.82959 4.59987 2.69659 3.7879 1.84884C2.68382 0.672304 1.34593 0.0582575 0 0V3.55907H0.029482C4.40961 3.55907 7.95565 7.11076 7.95565 11.4888C7.95565 15.8668 4.40961 19.4111 0.029482 19.4111H0V22.9628C1.52815 23.0653 3.05631 22.4586 4.27026 21.1428C5.14052 20.1926 5.84933 18.8774 6.25934 17.2034C7.69236 16.7212 8.83328 16.0416 9.68144 15.23C12.175 12.8843 12.1455 9.49999 9.69618 7.24938V7.25005Z" fill="currentColor"/>
+                        </g>
+                        <!-- M (width 35) — Vector.svg -->
+                        <g transform="translate(70,0.5)">
+                            <path d="M34.6592 6.98889V22.0662H30.3159V7.69066C30.3159 6.67484 30.1625 5.84182 29.8697 5.18358C29.5696 4.52601 29.0946 4.05057 28.4367 3.75125C27.7788 3.45862 26.9085 3.30528 25.8192 3.30528C24.4813 3.30528 23.3625 3.56107 22.4701 4.07267C21.5777 4.5769 20.8763 5.47621 20.3497 6.76189C19.8962 7.88753 19.6114 9.36339 19.4942 11.1982V22.0655H15.0779V7.68999C15.0779 6.67417 14.9245 5.84115 14.6317 5.18291C14.3322 4.52534 13.8566 4.0499 13.1987 3.75058C12.5408 3.45795 11.6926 3.30461 10.6542 3.30461C9.31632 3.30461 8.19014 3.5604 7.29039 4.072C6.38395 4.57623 5.67448 5.47554 5.1479 6.76122C4.70171 7.87213 4.42368 9.31919 4.29974 11.1098V22.0649H0V0.381018H4.29974V6.47596C4.44579 5.89874 4.62131 5.36505 4.81895 4.88292C5.5358 3.11443 6.53 1.85687 7.78749 1.11158C9.05235 0.373652 10.6026 0.00067028 12.4376 0.00067028C14.8139 0.00067028 16.5833 0.599985 17.7537 1.80598C18.8356 2.92426 19.4131 4.50257 19.4794 6.54158C19.6255 5.94227 19.8084 5.38715 20.0208 4.88225C20.7591 3.11376 21.7613 1.8562 23.0114 1.11091C24.2616 0.372982 25.8044 0 27.6401 0C30.0164 0 31.7784 0.599317 32.934 1.80531C34.089 3.00395 34.6598 4.7289 34.6598 6.98688L34.6592 6.98889Z" fill="currentColor"/>
+                        </g>
+                    </svg>
+                </div>
+                <div class="hero-nav-controls">
+                    <button class="hero-nav-btn">EN</button>
+                    <button class="hero-nav-btn">
+                        <svg viewBox="0 0 24 24">
+                            <line x1="3" y1="6" x2="21" y2="6"/>
+                            <line x1="3" y1="12" x2="21" y2="12"/>
+                            <line x1="3" y1="18" x2="21" y2="18"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Centro -->
+            <div class="hero-content">
+                <p class="hero-eyebrow">Foundations for what really matters — a new essential</p>
+                <h1 class="hero-title">A home<br>to bloom</h1>
+            </div>
+
+            <!-- Bottom -->
+            <div class="hero-bottom">
+                <p class="hero-sub">Spaces designed around balance, functionality and well-being — built to evolve with
+                    life.</p>
+                <div class="hero-ctas">
+                    <a href="#" class="btn-hero-primary">
+                        <span class="arrow-icon">
+                            <svg viewBox="0 0 24 24">
+                                <line x1="7" y1="17" x2="17" y2="7" />
+                                <polyline points="7 7 17 7 17 17" />
+                            </svg>
+                        </span>
+                        Book a Visit
+                    </a>
+                    <a href="#" class="btn-hero-secondary">View available units</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-right">
+            <img src="assets/Frame 271.svg" alt="Discover" class="discover-image">
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+     INTRO TEXT
+═══════════════════════════════════════════════════════════════ -->
+    <section class="intro" id="about-intro">
+        <h2 class="intro-title">
+            Bloom Living is a<br>residential project shaped<br>by a <em>new way of living</em>
+        </h2>
+        <p class="intro-body">One that values intention over excess, quality over quantity, and spaces that adapt to
+            real
+            life.</p>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+     FULL PHOTO
+═══════════════════════════════════════════════════════════════ -->
+    <div class="full-photo">
+        <img src="assets/Group 42.svg"  alt="Full photo" class="full-photo-img">
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+     NOT A FINISHED PRODUCT
+═══════════════════════════════════════════════════════════════ -->
+    <section class="not-finished" id="about">
+        <div class="nf-left">
+            <p class="nf-tag">Living concept</p>
+            <h2 class="nf-title">Here, the home is not<br><em>a finished product</em></h2>
+            <p class="nf-body">It is a living project — designed to start with the essentials, letting you invest in
+                what
+                truly matters. At Bloom Living, you begin in a functional, efficient space, with the freedom to adapt
+                and
+                personalise your home as your priorities and life evolve.</p>
+            <button class="btn btn-dark">
+                <span class="arrow-icon">
+                    <svg viewBox="0 0 24 24">
+                        <line x1="7" y1="17" x2="17" y2="7" />
+                        <polyline points="7 7 17 7 17 17" />
+                    </svg>
+                </span>
+                Book a visit
+            </button>
+        </div>
+        <div class="nf-right">
+            <div class="nf-accordion">
+                <div class="nf-item open" onclick="toggleAccordion(this)">
+                    <div class="nf-item-inner">
+                        <img class="nf-icon" src="icons/Vector.svg" alt="">
+                        <span class="nf-item-label">Open living spaces</span>
+                    </div>
+                    <span class="nf-item-arrow">↓</span>
+                </div>
+                <div class="nf-item-body">Open plan living and kitchen areas that extend to private balconies, bringing
+                    light
+                    and openness into daily life.</div>
+
+                <div class="nf-item" onclick="toggleAccordion(this)">
+                    <div class="nf-item-inner">
+                        <img class="nf-icon" src="icons/Vector-1.svg" alt="">
+                        <span class="nf-item-label">Energy-efficient homes</span>
+                    </div>
+                    <span class="nf-item-arrow">↓</span>
+                </div>
+                <div class="nf-item-body" style="display:none">High-performance insulation and smart systems that reduce
+                    energy
+                    consumption significantly.</div>
+
+                <div class="nf-item" onclick="toggleAccordion(this)">
+                    <div class="nf-item-inner">
+                        <img class="nf-icon" src="icons/Vector-2.svg" alt="">
+                        <span class="nf-item-label">Equipped kitchens</span>
+                    </div>
+                    <span class="nf-item-arrow">↓</span>
+                </div>
+                <div class="nf-item-body" style="display:none">Fully equipped kitchens with quality appliances included
+                    from day
+                    one.</div>
+
+                <div class="nf-item" onclick="toggleAccordion(this)">
+                    <div class="nf-item-inner">
+                        <img class="nf-icon" src="icons/Vector-7.svg" alt="">
+                        <span class="nf-item-label">Underground parking</span>
+                    </div>
+                    <span class="nf-item-arrow">↓</span>
+                </div>
+                <div class="nf-item-body" style="display:none">Secure underground parking included with each unit.</div>
+
+                <div class="nf-item" onclick="toggleAccordion(this)">
+                    <div class="nf-item-inner">
+                        <img class="nf-icon" src="icons/Vector-4.svg" alt="">
+                        <span class="nf-item-label">Shared living space</span>
+                    </div>
+                    <span class="nf-item-arrow">↓</span>
+                </div>
+                <div class="nf-item-body" style="display:none">Community spaces designed for connection, co-working, and
+                    relaxation.</div>
+
+                <div class="nf-item" onclick="toggleAccordion(this)">
+                    <div class="nf-item-inner">
+                        <img class="nf-icon" src="icons/Vector-5.svg" alt="">
+                        <span class="nf-item-label">Bicycle parking</span>
+                    </div>
+                    <span class="nf-item-arrow">↓</span>
+                </div>
+                <div class="nf-item-body" style="display:none">Dedicated secure bicycle storage and maintenance area.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+     DESIGNED WITH INTENTION
+═══════════════════════════════════════════════════════════════ -->
+    <section class="intention" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Designed with <em>intention</em></h2>
+            <p class="section-sub">Every apartment offers what is truly essential for modern living, complemented by
+                shared
+                spaces designed to bring people together, reduce costs, and create a complete, accessible home.</p>
+            <div class="photo-grid">
+
+                <!-- Col 1 esquerda: p1, p4, p7 — p7 é a maior -->
+                <div class="gallery-col gallery-col-side">
+                    <div class="p1"><img src="assets/gal/Frame 53.svg" alt="Yellow dining"></div>
+                    <div class="p4"><img src="assets/gal/Frame 61.svg" alt="Lounge"></div>
+                    <div class="p7"><img src="assets/gal/Frame 54.svg" alt="Living room"></div>
+                </div>
+
+                <!-- Col 2 centro: p2, p5, p8 — p2 é a maior -->
+                <div class="gallery-col">
+                    <div class="p2"><img src="assets/gal/Frame 65.svg" alt="Building exterior"></div>
+                    <div class="p5"><img src="assets/gal/Frame 62.svg" alt="Bathroom"></div>
+                    <div class="p8"><img src="assets/gal/Frame 64.svg" alt="Bedroom"></div>
+                </div>
+
+                <!-- Col 3 direita: p3, p6, p9 — p6 é a maior -->
+                <div class="gallery-col gallery-col-side">
+                    <div class="p3"><img src="assets/gal/Frame 66.svg" alt="Bikes storage"></div>
+                    <div class="p6"><img src="assets/gal/Frame 68.svg" alt="Corridor and dog"></div>
+                    <div class="p9"><img src="assets/gal/Frame 67.svg" alt="Laundry room"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+     CONNECTED TO WHAT MATTERS
+═══════════════════════════════════════════════════════════════ -->
+    <section class="connected" id="map">
+        <div class="connected-left">
+            <h2 class="section-title">Connected to<br><em>what matters</em></h2>
+            <p class="connected-body">Located in Quinta de Moreira, a prime area in Maia, Bloom Living offers everyday
+                convenience and quick connections via the A4, with key destinations just minutes away.</p>
+        </div>
+        <div class="map-placeholder">
+            <img src="assets/image 7.svg">
+        </div>
+        <div class="connected-icons">
+            <div class="ci-item">
+                <img class="ci-icon" src="icons/Vector-12.svg" alt="">
+                <span class="ci-text">Green areas and outdoor paths</span>
+            </div>
+            <div class="ci-item">
+                <img class="ci-icon" src="icons/Vector-7.svg" alt="">
+                <span class="ci-text">Local commerce and daily services</span>
+            </div>
+            <div class="ci-item">
+                <img class="ci-icon" src="icons/Vector-8.svg" alt="">
+                <span class="ci-text">Conveniently connected to metro and bus</span>
+            </div>
+            <div class="ci-item">
+                <img class="ci-icon" src="icons/Vector-9.svg" alt="">
+                <span class="ci-text">Near local schools</span>
+            </div>
+            <div class="ci-item">
+                <img class="ci-icon" src="icons/Vector-10.svg" alt="">
+                <span class="ci-text">Short distances to work, leisure and city life</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+     DISCOVER THE PROJECT
+═══════════════════════════════════════════════════════════════ -->
+    <section>
+        <div class="discover-wrap">
+            <section class="discover">
+                <div class="discover-left">
+                    <h2 class="discover-title">Discover the project in detail</h2>
+                    <p class="discover-body">Explore floor plans, layouts, and key information about Bloom Living in our
+                        digital
+                        brochure, or take a virtual tour.</p>
+                    <div class="discover-ctas">
+                        <button class="btn btn-dark">
+                            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M8 2v9M4 7l4 4 4-4M2 14h12" />
+                            </svg>
+                            Download brochure
+                        </button>
+                        <button class="btn" style="background:white;color:var(--dark);border:none;">
+                            <img src="icons/Iconcam.svg" alt="" style="width:16px;height:16px;object-fit:contain;">
+                            Virtual tour
+                        </button>
+                    </div>
+                </div>
+                <div class="discover-right">
+                    <img src="assets/Frame 271.svg" alt="Discover" class="discover-image">
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+     AVAILABLE HOMES
+═══════════════════════════════════════════════════════════════ -->
+    <section class="homes" id="available-homes">
+        <div class="container">
+            <div class="homes-header">
+                <h2 class="homes-title">Available homes</h2>
+                <p class="homes-desc">A selection of thoughtfully designed apartments, offering flexible layouts for
+                    different
+                    stages of life.</p>
+            </div>
+
+            <div class="homes-filters">
+                <div class="filter-group" id="filter-typology">
+                    <span class="filter-label">Typology</span>
+                    <button class="filter-chip active" data-filter="all">All</button>
+                    <button class="filter-chip" data-filter="T1">T1</button>
+                    <button class="filter-chip" data-filter="T2">T2</button>
+                    <button class="filter-chip" data-filter="T3">T3</button>
+                </div>
+                <div class="filter-group" id="filter-status">
+                    <span class="filter-label">Status</span>
+                    <button class="filter-chip active" data-filter="all">All</button>
+                    <button class="filter-chip available" data-filter="Available">Available</button>
+                    <button class="filter-chip reserved" data-filter="Reserved">Reserved</button>
+                </div>
+            </div>
+
+            <table class="homes-table">
+                <thead>
+                    <tr>
+                        <th>Unit</th>
+                        <th>Typology</th>
+                        <th>Area</th>
+                        <th>Floor</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-typology="T1" data-status="Available">
+                        <td>A101</td>
+                        <td>T1</td>
+                        <td>52 m²</td>
+                        <td>1st</td>
+                        <td>€245,000</td>
+                        <td><span class="status-badge available">Available</span></td>
+                    </tr>
+                    <tr data-typology="T2" data-status="Available">
+                        <td>A205</td>
+                        <td>T2</td>
+                        <td>78 m²</td>
+                        <td>2nd</td>
+                        <td>€395,000</td>
+                        <td><span class="status-badge available">Available</span></td>
+                    </tr>
+                    <tr data-typology="T2" data-status="Reserved">
+                        <td>A308</td>
+                        <td>T2</td>
+                        <td>82 m²</td>
+                        <td>3rd</td>
+                        <td>€335,000</td>
+                        <td><span class="status-badge reserved">Reserved</span></td>
+                    </tr>
+                    <tr data-typology="T3" data-status="Available">
+                        <td>A412</td>
+                        <td>T3</td>
+                        <td>105 m²</td>
+                        <td>4th</td>
+                        <td>€425,000</td>
+                        <td><span class="status-badge available">Available</span></td>
+                    </tr>
+                    <tr data-typology="T1" data-status="Available">
+                        <td>AG01</td>
+                        <td>T1</td>
+                        <td>55 m²</td>
+                        <td>0th</td>
+                        <td>€265,000</td>
+                        <td><span class="status-badge available">Available</span></td>
+                    </tr>
+                    <tr data-typology="T3" data-status="Available">
+                        <td>AG03</td>
+                        <td>T3</td>
+                        <td>110 m²</td>
+                        <td>0th</td>
+                        <td>€445,000</td>
+                        <td><span class="status-badge available">Available</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="homes-note">*Prices indicative. Subject to availability.</p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+     WHAT BLOOM LIVING OFFERS
+═══════════════════════════════════════════════════════════════ -->
+    <section class="offers">
+        <div class="container">
+            <h2 class="section-title">What Bloom Living <em>offers</em></h2>
+            <p class="section-sub">Features designed to support a practical, balanced and efficient everyday life.</p>
+            <div class="offers-grid">
+                <div class="offer-item">
+                    <img class="offer-icon" src="icons/Icon.svg" alt="">
+                    <h3 class="offer-title">Privacy</h3>
+                    <p class="offer-body">Your personal space, essential and well-designed, ready to grow with you.</p>
+                </div>
+                <div class="offer-item">
+                    <img class="offer-icon" src="icons/Vector-11.svg" alt="">
+                    <h3 class="offer-title">Community</h3>
+                    <p class="offer-body">Shared spaces that create safety and belonging.</p>
+                </div>
+                <div class="offer-item">
+                    <img class="offer-icon" src="icons/Vector-6.svg" alt="">
+                    <h3 class="offer-title">Well-being</h3>
+                    <p class="offer-body">Access to the city with green areas and outdoor spaces to relax, breathe, and
+                        reset.</p>
+                </div>
+                <div class="offer-item">
+                    <img class="offer-icon" src="icons/Vector-13.svg" alt="">
+                    <h3 class="offer-title">Proximity</h3>
+                    <p class="offer-body">Easy access to the key points of your daily routine.</p>
+                </div>
+                <div class="offer-item">
+                    <img class="offer-icon" src="icons/Vector-14.svg" alt="">
+                    <h3 class="offer-title">Convenience</h3>
+                    <p class="offer-body">Everything you need, right at your doorstep. Includes 7 commercial spaces on
+                        the ground
+                        floor.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+     PLOTS FOR SALE
+═══════════════════════════════════════════════════════════════ -->
+    <section class="plots-section" id="homes">
+        <h2>Plots for sale</h2>
+        <p>A selection of plots is available within the Bloom Living development, offering the opportunity to build
+            within a thoughtfully planned environment.</p>
+        <div class="plots-img-wrap">
+            <img src="assets/Group 93.svg" alt="Aerial view of the Bloom Living development">
+            <div class="aerial-badge lote8">Lote 8</div>
+            <div class="aerial-badge lote7">Lote 7</div>
+        </div>
+    </section>
+
+    <div class="section-divider-orig"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+     DESIGNED WITH EFFICIENCY
+═══════════════════════════════════════════════════════════════ -->
+    <section class="efficiency-orig" id="sustainability">
+        <h2>Designed with efficiency <span>in mind</span></h2>
+        <p>Bloom Living integrates energy-efficient solutions and responsible design to improve everyday comfort while
+            reducing environmental impact.</p>
+        <div class="cards-grid">
+            <div class="feat-card">
+                <div class="feat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                        <polyline points="17 6 23 6 23 12" />
+                    </svg>
+                </div>
+                <h3>Energy performance</h3>
+                <p>The building performs significantly above standard residential benchmarks, improving efficiency in
+                    heating, cooling and hot water production.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
+                </div>
+                <h3>Renewable energy</h3>
+                <p>A significant share of the building's energy consumption is supported by renewable sources,
+                    contributing to a more responsible and efficient home.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" />
+                    </svg>
+                </div>
+                <h3>Thermal comfort</h3>
+                <p>Highly insulated façades and efficient window systems help maintain indoor comfort while reducing the
+                    need for climate control.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" />
+                    </svg>
+                </div>
+                <h3>Air quality and well-being</h3>
+                <p>Natural ventilation and independent extraction systems help ensure healthier indoor environments
+                    throughout the apartments.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider-orig"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════════════════════════════ -->
+    <section class="contact-section" id="contact">
+        <div class="contact-inner">
+            <div class="contact-left">
+                <h2>Let's talk</h2>
+                <p>If you'd like to learn more about Bloom Living, our team is here to help.</p>
+                <p style="margin-top:1rem">Share a few details and we'll get back to you shortly.</p>
+            </div>
+            <div class="contact-right">
+                <div class="form-group-orig">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Your name">
+                </div>
+                <div class="form-group-orig">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="your@email.com">
+                </div>
+                <div class="form-group-orig">
+                    <label for="phone">Phone number</label>
+                    <input type="tel" id="phone" placeholder="+351 000 000 000">
+                </div>
+                <div class="form-group-orig">
+                    <label for="profile">Profile</label>
+                    <select id="profile">
+                        <option value="" disabled selected>Select one</option>
+                        <option>Buyer</option>
+                        <option>Investor</option>
+                        <option>Agent</option>
+                    </select>
+                </div>
+                <div class="form-group-orig">
+                    <label>I am interested in the apartment type</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" value="T2"> T2</label>
+                        <label><input type="checkbox" value="T3"> T3</label>
+                    </div>
+                </div>
+                <div class="terms">
+                    <input type="checkbox" id="terms">
+                    <label for="terms">I declare that I have read and accept the Terms and Conditions, Privacy Policy,
+                        and Cookies Policy.</label>
+                </div>
+                <button class="btn-send" onclick="handleSubmit()">Send</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+    ═══════════════════════════════════════════════════════════════ -->
+    <footer class="footer-orig">
+        <div class="footer-top-orig">
+            <div class="footer-brand">
+                <h2>Bloom Living</h2>
+                <div class="footer-info">
+                    info@bloomliving.com<br>
+                    +351 960 205 647<br>
+                    +351 253 461 462<br><br>
+                    R. de Adelaide da Silva Pinto Aroso,<br>
+                    4470-048 Moreira<br>
+                    Portugal
+                </div>
+                <a href="#contact" class="footer-btn-orig">↗ Reserve now</a>
+            </div>
+            <div class="footer-cols-right">
+                <div class="footer-col">
+                    <h4>Menu</h4>
+                    <a href="#about">About</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="#map">Map</a>
+                    <a href="#homes">Available homes</a>
+                    <a href="#sustainability">Sustainability</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Socials</h4>
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Youtube</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom-orig">
+            <p>© Bloom Living, 2026</p>
+            <div class="footer-legal-orig">
+                <a href="#">Cookie Policy</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+
+        <!-- ── BOTTOM BANNER ── -->
+        <div class="bottom-banner-orig">
+            <div class="bottom-banner-overlay-orig"> <img src="assets/Frame 77.svg" alt="Banner Image"> </div>
+
+
+        </div>
+    </footer>
+
+    <script>
+        function toggleAccordion(item) {
+            const isOpen = item.classList.contains('open');
+            // Close all open items
+            document.querySelectorAll('.nf-item.open').forEach(function (el) {
+                el.classList.remove('open');
+                const body = el.nextElementSibling;
+                if (body && body.classList.contains('nf-item-body')) {
+                    body.style.display = 'none';
+                }
+            });
+            // If it wasn't open, open it
+            if (!isOpen) {
+                item.classList.add('open');
+                const body = item.nextElementSibling;
+                if (body && body.classList.contains('nf-item-body')) {
+                    body.style.display = 'block';
+                }
+            }
+        }
+
+        function handleSubmit() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const terms = document.getElementById('terms').checked;
+            if (!name || !email) { alert('Please fill in your name and email.'); return; }
+            if (!terms) { alert('Please accept the Terms and Conditions.'); return; }
+            alert('Thank you, ' + name + '! We will be in touch shortly.');
+        }
+
+        // ─── AVAILABLE HOMES FILTER ───────────────────────────────
+        function filterTable() {
+            const typChip = document.querySelector('#filter-typology .filter-chip.active');
+            const statChip = document.querySelector('#filter-status .filter-chip.active');
+            const typFilter = typChip ? typChip.dataset.filter : 'all';
+            const statFilter = statChip ? statChip.dataset.filter : 'all';
+            document.querySelectorAll('.homes-table tbody tr').forEach(function (row) {
+                const typ = row.dataset.typology;
+                const stat = row.dataset.status;
+                const show = (typFilter === 'all' || typ === typFilter)
+                          && (statFilter === 'all' || stat === statFilter);
+                row.style.display = show ? '' : 'none';
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.filter-group').forEach(function (group) {
+                group.querySelectorAll('.filter-chip').forEach(function (chip) {
+                    chip.addEventListener('click', function () {
+                        // Remove active from all chips in this group
+                        group.querySelectorAll('.filter-chip').forEach(function (c) {
+                            c.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                        filterTable();
+                    });
+                });
+            });
+        });
+        let currentSlide = 4;
+        const totalSlides = 6;
+        function slideNav(dir) {
+            currentSlide = Math.max(1, Math.min(totalSlides, currentSlide + dir));
+            document.getElementById('slideCounter').textContent = currentSlide + ' / ' + totalSlides;
+        }
+    </script>
+
+</body>
+
+</html>
