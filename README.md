@@ -1,56 +1,96 @@
 # BLOOM Living — AI-Built Landing Page
 
-> A fully responsive real estate landing page for **Bloom Living**, a residential development in Quinta de Moreira, Maia, Portugal — built entirely with AI assistance using Claude Code.
+> A fully responsive real estate landing page for **Bloom Living**, a residential development in Quinta de Moreira, Maia, Portugal — built entirely with AI assistance using Claude Code inside the **Cowork** environment by Anthropic.
 
-🔗 **Live:** [bloom-react-smoky.vercel.app](https://bloom-react-smoky.vercel.app)
+🔗 **Live:** [bloom-react-smoky.vercel.app](https://bloom-react-smoky.vercel.app)  
+📦 **Repo:** [github.com/diogoduarte2000/BLOOM](https://github.com/diogoduarte2000/BLOOM)
 
 ---
 
 ## How This Project Was Built
 
-This project is an experiment in **AI-driven front-end development** — from the first pixel to production, the entire build process was guided by conversations with Claude (Anthropic).
+This project is a real-world experiment in **AI-driven front-end development**. No boilerplate generators, no UI kits — just a design, screenshots, and a conversation with Claude.
+
+### The Tool: Claude Code + Cowork
+
+The entire project was built inside **[Cowork](https://claude.ai)**, a development environment powered by **Claude Code** (Anthropic). Cowork gives Claude access to the local filesystem, terminal, git, and browser — allowing it to read, write, and run code directly on the machine, not just suggest it.
+
+Key capabilities used throughout the project:
+
+- 📁 **File read/write** — Claude created and edited every `.jsx` and `.css` file directly
+- 💻 **Terminal access** — ran `npm install`, `npm run dev`, `npm run build`, git commands
+- 🔍 **Code search** — grepped across the codebase to find style conflicts and component references
+- 🌐 **Vercel deploy** — pushed to production via `npx vercel deploy --prod` from within the session
+- 🧠 **Large context window** — the full codebase (~2500 lines of CSS + 650 lines of JSX) was kept in context simultaneously, allowing Claude to reason about cross-file interactions without losing track
+
+---
 
 ### 1. From Screenshot to First Version
 
-The process started with **screenshots of a design mockup**. Instead of writing code from scratch, the screenshots were passed directly to Claude, which analysed the visual layout and generated the initial React components and CSS to match it. This gave an immediate working foundation without any manual translation from design to code.
+The process started with **screenshots of a design mockup**. The images were passed directly to Claude inside the Cowork session, which analysed the visual layout — sections, typography, colours, spacing — and generated the initial React component tree and CSS to match. The first working version was running in the browser in a single session.
+
+No Figma export, no hand-coded HTML first. Just: *"here's what it should look like"* → working code.
 
 ### 2. Iterative Improvement & Code Review
 
-From that first version, the project evolved through **continuous feedback loops**:
+From that first version, the project evolved through **many rounds of feedback and review**:
 
-- Sections were reviewed one by one, with visual comparisons against the original design
-- Claude suggested and applied fixes — spacing, typography, colour accuracy, component structure
-- Code reviews were requested at each stage to catch redundancies, improve CSS organisation, and refine component logic
-- The codebase was progressively cleaned up: consolidating styles, removing overrides, and making the architecture more maintainable
+- Sections were examined one by one, comparing the live render against the original design
+- Claude performed **code reviews** on request — identifying redundant CSS rules, inconsistent spacing tokens, and component structure issues
+- Fixes were applied surgically: targeted edits to specific classes or JSX blocks, without rewriting entire files
+- The CSS was progressively refactored: consolidating `padding` overrides, removing dead rules, organising breakpoints into a logical order
+
+Git commits tracked each meaningful improvement, from `version1` through `iPad & global CSS fixes` to the final polish pass.
 
 ### 3. The Biggest Challenge — Three Responsive Breakpoints
 
-The hardest part of the project was making everything look right across **three completely different aspect ratios**:
+The hardest part of the entire project was making the layout look correct across **three completely different screen profiles**:
 
-| Target | Breakpoint |
+| Target | Condition |
 |---|---|
-| 🖥️ Desktop / Windows | Wide landscape screens |
-| 📱 iPad | Tablet portrait & landscape |
-| 📱 iPhone | Mobile portrait |
+| 🖥️ **Desktop / Windows** | Wide landscape, `min-width: 1024px` |
+| 📱 **iPad** | `min-width: 821px`, portrait & landscape aspect ratios |
+| 📱 **iPhone** | `max-width: 480px`, `max-aspect-ratio: 5/9` |
 
-Each layout required its own set of rules. The challenge was that fixing a spacing issue on desktop would often break the iPad layout, and adjusting the iPad version would ripple into the mobile view. This was solved using a combination of:
+The challenge wasn't writing each layout individually — it was keeping all three working at once. Fixing a padding issue on desktop would shift the iPad layout. Adjusting a grid on iPad would break mobile. Every change required checking three views.
 
-- `clamp()` for fluid typography that scales across viewports
-- CSS media queries with `max-width`, `aspect-ratio`, and combined conditions
-- Separate override blocks per breakpoint, carefully ordered to avoid conflicts
-- Repeated visual testing and targeted fixes per device profile
+The strategy that made it manageable:
 
-Claude was used to reason through conflicting breakpoints, propose media query strategies, and apply surgical CSS fixes without disturbing the other views.
+- **`clamp()`** for fluid typography — font sizes that scale continuously between breakpoints without jumping
+- **`aspect-ratio` media queries** alongside `max-width` — to target iPad landscape specifically, which shares a width with some desktop windows
+- **Ordered breakpoint blocks** — desktop base styles → tablet overrides → mobile overrides, never mixed
+- **Targeted surgical fixes** — instead of rewriting a section, adding a single rule to a specific breakpoint block
+- Claude reasoned through the cascade explicitly, explaining why a rule was being placed in one block and not another
+
+---
+
+## Project Stats
+
+| | |
+|---|---|
+| Components | 13 React components |
+| Lines of CSS | ~1,873 |
+| Lines of JSX | ~650 |
+| Commits | 13 |
+| Breakpoints | 3 (desktop, iPad, iPhone) |
+| Time to first working version | Single session |
+| External UI libraries | 0 |
 
 ---
 
 ## Tech Stack
 
-- **React 18** — component-based UI
-- **Vite** — fast build tool and dev server
-- **Vanilla CSS** — custom properties, CSS Grid, Flexbox, `clamp()`
-- **SVG assets** — all illustrations, icons and maps
-- **Vercel** — deployment and hosting
+| Tool | Role |
+|---|---|
+| **React 18** | Component-based UI |
+| **Vite 5** | Build tool & dev server |
+| **Vanilla CSS** | All styles — custom properties, Grid, Flexbox, `clamp()` |
+| **SVG assets** | Illustrations, icons, maps — all vector |
+| **GitHub** | Version control |
+| **Vercel** | Hosting & continuous deployment |
+| **Claude Code (Cowork)** | AI pair programmer — wrote, edited, reviewed, deployed |
+
+---
 
 ## Getting Started
 
@@ -59,40 +99,39 @@ npm install
 npm run dev
 ```
 
-## Build
+## Build for Production
 
 ```bash
 npm run build
+# output → dist/
 ```
-
-Output goes to `dist/`.
 
 ## Project Structure
 
 ```
 src/
   components/
-    Hero.jsx            # Hero section with headline
+    Hero.jsx            # Hero section with headline and CTA
     Intro.jsx           # Intro text block
     FullPhoto.jsx       # Full-width interior photo
     Offers.jsx          # What Bloom Living offers
-    Efficiency.jsx      # Energy efficiency rating cards
+    Efficiency.jsx      # Energy efficiency rating cards (A+++)
     NotFinished.jsx     # Living concept + accordion FAQ
     Discover.jsx        # Brochure + virtual tour CTA
     Connected.jsx       # Location map section
     Gallery.jsx         # Photo gallery grid
-    PlotsForSale.jsx    # Aerial map with plot badges
+    PlotsForSale.jsx    # Aerial map with plot badges (Lote 7 / Lote 8)
     AvailableHomes.jsx  # Available units listing
     Contact.jsx         # Contact form
-    Footer.jsx          # Footer with links and banner
-  index.css             # All styles (desktop + tablet + mobile)
-  App.jsx
-  main.jsx
+    Footer.jsx          # Footer with links and banner image
+  index.css             # All styles (~1873 lines, 3 breakpoints)
+  App.jsx               # Root component, section order
+  main.jsx              # Entry point
 public/
-  assets/               # SVG images and maps
-  icons/                # UI icons
+  assets/               # SVG illustrations and maps
+  icons/                # UI icons (SVG)
 ```
 
 ---
 
-*Built with [Claude Code](https://claude.ai/code) — 100% AI-assisted development.*
+*Built with [Claude Code](https://claude.ai/code) inside Cowork — 100% AI-assisted development, from first screenshot to production deploy.*
